@@ -1,10 +1,19 @@
-
-import java.util.*;
-
+import java.util.LinkedList;
 
 public class GrafoListaAdj {
     private int vertices;
-    private LinkedList<Integer>[] listaAdj;
+    private LinkedList<Aresta>[] listaAdj;
+
+    // Classe para representar uma aresta com peso
+    class Aresta {
+        int destino;
+        int peso;
+
+        public Aresta(int destino, int peso) {
+            this.destino = destino;
+            this.peso = peso;
+        }
+    }
 
     // Construtor
     public GrafoListaAdj(int vertices) {
@@ -15,25 +24,30 @@ public class GrafoListaAdj {
         }
     }
 
-    // Adicionar aresta
-    public void adicionarAresta(int origem, int destino) {
-        listaAdj[origem].add(destino);
-        listaAdj[destino].add(origem); // Para grafos não-dirigidos
+    // Adiciona aresta direcionada (com peso)
+    public void adicionarArestaDirigida(int origem, int destino, int peso) {
+        listaAdj[origem].add(new Aresta(destino, peso));
     }
 
-    // Imprimir o grafo
+    // Adiciona aresta não direcionada (com peso)
+    public void adicionarAresta(int origem, int destino, int peso) {
+        listaAdj[origem].add(new Aresta(destino, peso));
+        listaAdj[destino].add(new Aresta(origem, peso));
+    }
+
+    // Método para retornar a lista de adjacência
+    public LinkedList<Aresta>[] getListaAdj() {
+        return listaAdj;
+    }
+
+    // Imprimir o grafo com pesos
     public void imprimirGrafo() {
         for (int i = 0; i < vertices; i++) {
             System.out.print(i + " -> ");
-            for (int adj : listaAdj[i]) {
-                System.out.print(adj + " ");
+            for (Aresta aresta : listaAdj[i]) {
+                System.out.print("(" + aresta.destino + ", peso " + aresta.peso + ") ");
             }
             System.out.println();
         }
-    }
-
-    // Obter lista de adjacências
-    public LinkedList<Integer>[] getListaAdj() {
-        return listaAdj;
     }
 }

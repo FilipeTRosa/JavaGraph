@@ -15,38 +15,41 @@ public class TestesDesempenho {
                     GrafoListaAdj grafoLista = new GrafoListaAdj(tamanho);
                     GrafoMatrizAdj grafoMatriz = new GrafoMatrizAdj(tamanho);
 
-                    // Adicionar arestas de acordo com a densidade
+                    // Adicionar arestas com pesos de acordo com a densidade
                     int numArestas = (int) (tamanho * (tamanho - 1) * densidade);
                     for (int i = 0; i < numArestas; i++) {
                         int origem = (int) (Math.random() * tamanho);
                         int destino = (int) (Math.random() * tamanho);
+                        int peso = (int) (Math.random() * 20) + 1; // Peso aleatório entre 1 e 20
+
                         if (origem != destino) {
-                            grafoLista.adicionarAresta(origem, destino);
-                            grafoMatriz.adicionarAresta(origem, destino);
+                            // Adicionar arestas com peso
+                            grafoLista.adicionarAresta(origem, destino, peso);
+                            grafoMatriz.adicionarAresta(origem, destino, peso);
                         }
                     }
 
                     // Testar Dijkstra para Lista
                     long inicio = System.nanoTime();
-                    DijkstraListaAdj.executarDijkstra(grafoLista, 0);
+                    DijkstraListaAdjNaoDirigido.executarDijkstra(grafoLista, 0);
                     long fim = System.nanoTime();
                     writer.write(tamanho + "," + densidade + ",Lista,Dijkstra," + (fim - inicio) + "\n");
 
                     // Testar Dijkstra para Matriz
                     inicio = System.nanoTime();
-                    DijkstraMatrizAdj.executarDijkstra(grafoMatriz, 0);
+                    DijkstraMatrizAdjNaoDirigido.executarDijkstra(grafoMatriz, 0);
                     fim = System.nanoTime();
                     writer.write(tamanho + "," + densidade + ",Matriz,Dijkstra," + (fim - inicio) + "\n");
 
                     // Testar Bellman-Ford para Lista
                     inicio = System.nanoTime();
-                    BellmanFordListaAdj.executarBellmanFord(grafoLista, 0);
+                    BellmanFordListaAdjNaoDirigido.executarBellmanFord(grafoLista, 0);
                     fim = System.nanoTime();
                     writer.write(tamanho + "," + densidade + ",Lista,Bellman-Ford," + (fim - inicio) + "\n");
 
                     // Testar Bellman-Ford para Matriz
                     inicio = System.nanoTime();
-                    BellmanFordMatrizAdj.executarBellmanFord(grafoMatriz, 0);
+                    BellmanFordMatrizAdjNaoDirigido.executarBellmanFord(grafoMatriz, 0);
                     fim = System.nanoTime();
                     writer.write(tamanho + "," + densidade + ",Matriz,Bellman-Ford," + (fim - inicio) + "\n");
                 }

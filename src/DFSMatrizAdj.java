@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class DFSMatrizAdj {
-    public static void executarDFS(GrafoMatrizAdj grafo, int inicio) {
+    public static void executarDFS(GrafoMatrizAdjNaoPonderado grafo, int inicio) {
         int[][] matrizAdj = grafo.getMatrizAdj();
         boolean[] visitado = new boolean[matrizAdj.length];
 

@@ -2,7 +2,7 @@
 import java.util.*;
 
 public class DFSListaAdj {
-    public static void executarDFS(GrafoListaAdj grafo, int inicio) {
+    public static void executarDFS(GrafoListaAdjNaoPonderado grafo, int inicio) {
         LinkedList<Integer>[] listaAdj = grafo.getListaAdj();
         boolean[] visitado = new boolean[listaAdj.length];
 

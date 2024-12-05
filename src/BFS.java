@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class BFS {
-    public static void executarBFS(GrafoListaAdj grafo, int inicio) {
+    public static void executarBFS(GrafoListaAdjNaoPonderado grafo, int inicio) {
         LinkedList<Integer>[] listaAdj = grafo.getListaAdj();
         boolean[] visitado = new boolean[listaAdj.length];
         Queue<Integer> fila = new LinkedList<>();
