@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -64,6 +65,7 @@ public class Main {
             System.out.println("12. Executar Bellman-Ford (Lista de Adjacência - Dirigido)");
             System.out.println("13. Executar Dijkstra (Matriz de Adjacência - Dirigido)");
             System.out.println("14. Executar BellmanFord (Matriz de Adjacência - Dirigido)");
+            System.out.println("16. Executar Testes com Arquivos");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
@@ -141,6 +143,26 @@ public class Main {
 
                     System.out.println("\n--- Executando Bellman-Ford ---");
                     TesteBellmanDijkstra.executarBellmanFord(grafo, 0); // Vértice inicial: 0
+                    break;
+                case 16:
+                    List<String> arquivosGrafo = List.of(
+                            "grafos/sample100-1980.gr",
+                            "grafos/sample100-3960.gr",
+                            "grafos/sample100-5940.gr",
+                            "grafos/sample100-7920.gr",
+                            "grafos/sample100-9900.gr",
+                            "grafos/sample200-7960.gr",
+                            "grafos/sample200-15920.gr",
+                            "grafos/sample200-23880.gr",
+                            "grafos/sample200-31840.gr",
+                            "grafos/sample200-39800.gr",
+                            "grafos/sample500-49900.gr",
+                            "grafos/sample500-99800.gr",
+                            "grafos/sample500-149700.gr",
+                            "grafos/sample500-199600.gr",
+                            "grafos/sample500-249500.gr"
+                    );
+                    TestesComArquivos.executarTestes(arquivosGrafo);
                     break;
                 case 0:
                     System.out.println("Saindo...");
